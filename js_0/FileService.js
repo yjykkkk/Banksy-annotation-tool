@@ -29,25 +29,12 @@ export default class FileService {
             let relation = []
 
             // Check if the box id is in fromLinks or toLinks and push "key" or "value" accordingly
-            /*if (fromLinks.some(link => link.includes(boxObj.id))) {
+            if (fromLinks.some(link => link.includes(boxObj.id))) {
                 relation.push("key")
             }
             if (toLinks.some(link => link.includes(boxObj.id))) {
                 relation.push("value")
-            }*/
-
-            // Check if the box id is in fromLinks or toLinks and push "key" or "value" accordingly
-            fromLinks.forEach(link => {
-                if (link.includes(boxObj.id)) {
-                    relation.push("key");
-                }
-            });
-
-            toLinks.forEach(link => {
-                if (link.includes(boxObj.id)) {
-                    relation.push("value");
-                }
-            });
+            }
         
             entities.push({
                 id: boxObj.id,
