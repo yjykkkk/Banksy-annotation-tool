@@ -25,34 +25,43 @@ export default class FileService {
             let fromLinks = box.originLinks.map(link => [State.linkArray[link].from, State.linkArray[link].to]).filter(link => link !== null)
             let toLinks = box.destinationLinks.map(link => [State.linkArray[link].from, State.linkArray[link].to]).filter(link => link !== null)
             let boxObj = box.box
-
+            /*
             let relation = []
 
             // Check if the box id is in fromLinks or toLinks and push "key" or "value" accordingly
-            /*if (fromLinks.some(link => link.includes(boxObj.id))) {
+            if (fromLinks.some(link => link.includes(boxObj.id))) {
                 relation.push("key")
             }
             if (toLinks.some(link => link.includes(boxObj.id))) {
                 relation.push("value")
-            }*/
-
-            // Check if the box id is in fromLinks or toLinks and push "key" or "value" accordingly
-            fromLinks.forEach(link => {
-                if (link.includes(boxObj.id)) {
-                    relation.push("key");
-                }
-            });
-
-            toLinks.forEach(link => {
-                if (link.includes(boxObj.id)) {
-                    relation.push("value");
-                }
-            });
+            }
+            if (box.label == 'header'){
+                relation.push("header")
+            }
+            if (box.label == 'others'){
+                relation.push("others")
+            }
+            */
+            
+            let attribute = ''
+            if (fromLinks.some(link => link.includes(boxObj.id))) {
+                attribute = 'key'
+            }
+            else if (toLinks.some(link => link.includes(boxObj.id))) {
+                attribute = 'value'
+            }
+            else if (box.label == 'header'){
+                attribute = 'header'
+            }
+            else if (box.label == 'others'){
+                attribute = 'others'
+            }
+            
         
             entities.push({
                 id: boxObj.id,
                 text: box.content,
-                label: box.label,
+                label: attribute,
                 box: [
                     //Don't forget to scale the boxes coordinates to the image true size
                     parseFloat(Number(((boxObj.aCoords.tl.x * 1000) / (State.image.scaleX * 1000))).toFixed(2)),
@@ -61,7 +70,7 @@ export default class FileService {
                     parseFloat(Number((((boxObj.aCoords.tl.y + boxObj.height) * 1000) / (State.image.scaleY * 1000))).toFixed(2))
                 ],
                 linking: [...fromLinks, ...toLinks],
-                relation: relation
+                attribute: box.label
             })
         }
 
