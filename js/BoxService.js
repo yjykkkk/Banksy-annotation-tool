@@ -7,15 +7,16 @@ const LINK_BUTTON_OFFSET = 10;
 //This is a combination of label/color used for coloring the boxes. Feel free to change this, it will modify the colors everywhere.
 const boxColors = {
     header: "rgb(170,0,0)",
+    others: "rgb(24,170,135)",
     name: "rgb(170,80,13)",
     account: "rgb(170,153,21)",
     time: "rgb(103,170,0)",
     date: "rgb(29,170,5)",
-    key: "rgb(24,170,135)",
-    price: "rgb(36,124,170)",
-    value: "rgb(49,0,170)",
-    payment: "rgb(0,0,0)",
-    barcode: "rgb(63,62,64)",
+    //key: "rgb(24,170,135)",
+    phone: "rgb(36,124,170)",
+    //value: "rgb(49,0,170)",
+    price: "rgb(0,0,0)",
+    mobile: "rgb(63,62,64)",
 }
 
 fabric.Object.prototype.borderScaleFactor = 2
@@ -176,17 +177,14 @@ export default class BoxService {
                         <select class="uk-select uk-form-small" id='label-${box.box.id}' name="label">
                         <option value=""></option>
                         <option value="header">Header</option>
-                        <option value="key">Key</option>
-                        <option value="value">Value</option>
+                        <option value="others">Others</option>
                         <option value="name">Name</option>
                         <option value="account">Account</option>
-                        <option value="time">Time</option>
                         <option value="date">Date</option>
-                        <option value="label">Label</option>
-                        <option value="price">Price</option>
+                        <option value="time">Time</option>
+                        <option value="mobile">MobilePhone</option>
                         <option value="phone">Phone</option>
-                        <option value="payment">Payment</option>
-                        <option value="barcode">Barcode</option>
+                        <option value="price">Price</option>
                         </select>
                     </div>
                     <div>

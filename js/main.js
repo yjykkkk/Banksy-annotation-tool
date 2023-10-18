@@ -457,11 +457,11 @@ function mergeBoxes() {
         let selection = State.canvas.getActiveObject()
         if (selection !== null && selection._objects !== undefined) {
             let boxes = selection._objects.map(obj => State.boxArray[obj.id])
-            /*  把 merge 前的 bounding box 資訊丟掉
+            //把 merge 前的 bounding box 資訊丟掉
             boxes.forEach(box => {
                 BoxService.deleteBox(box.box.id)
             })
-            */
+            
             //We sort from the left to the right
             boxes.sort((a, b) => a.box.left >= b.box.left ? 1 : -1)
             //in order to concat the text
