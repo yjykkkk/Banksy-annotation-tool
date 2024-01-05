@@ -85,12 +85,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if  (State.selectedBoxId !== null) {
             switch (e.code.toLowerCase()) {
                 case "delete":
-                //case "backspace":     // 這樣就可以修改文字
-                //    BoxService.deleteBox(State.selectedBoxId)
-                //    State.canvas.historySaveAction()
-                //    break
+                /*case "backspace":
+                    BoxService.deleteBox(State.selectedBoxId)
+                    State.canvas.historySaveAction()
+                    break*/
                 case "digit1":
-                    BoxService.changeLabel(State.selectedBoxId, "value") //label
+                    BoxService.changeLabel(State.selectedBoxId, "label")
                     break
                 case "digit2":
                     BoxService.changeLabel(State.selectedBoxId, "price")
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     BoxService.changeLabel(State.selectedBoxId, "barcode")
                     break
                 case "digit7":
-                    BoxService.changeLabel(State.selectedBoxId, "key")//brand
+                    BoxService.changeLabel(State.selectedBoxId, "brand")
                     break
                 case "digit8":
                     BoxService.changeLabel(State.selectedBoxId, "loc")
@@ -457,15 +457,13 @@ function mergeBoxes() {
         let selection = State.canvas.getActiveObject()
         if (selection !== null && selection._objects !== undefined) {
             let boxes = selection._objects.map(obj => State.boxArray[obj.id])
-            //把 merge 前的 bounding box 資訊丟掉
             boxes.forEach(box => {
                 BoxService.deleteBox(box.box.id)
             })
-            
             //We sort from the left to the right
             boxes.sort((a, b) => a.box.left >= b.box.left ? 1 : -1)
-            //in order to concat the text  
-            let text = boxes.reduce((str, box) => str + "" + box.content, "").trim() //不要有空格
+            //in order to concat the text
+            let text = boxes.reduce((str, box) => str + "" + box.content, "").trim() //here
             let createdId = BoxService.createBox({
                 left: selection.left,
                 top: selection.top,

@@ -25,24 +25,19 @@ export default class FileService {
             let fromLinks = box.originLinks.map(link => [State.linkArray[link].from, State.linkArray[link].to]).filter(link => link !== null)
             let toLinks = box.destinationLinks.map(link => [State.linkArray[link].from, State.linkArray[link].to]).filter(link => link !== null)
             let boxObj = box.box
-            /*
-            let relation = []
-
-            // Check if the box id is in fromLinks or toLinks and push "key" or "value" accordingly
-            if (fromLinks.some(link => link.includes(boxObj.id))) {
-                relation.push("key")
-            }
-            if (toLinks.some(link => link.includes(boxObj.id))) {
-                relation.push("value")
-            }
-            if (box.label == 'header'){
-                relation.push("header")
-            }
-            if (box.label == 'others'){
-                relation.push("others")
-            }
-            */
-            
+            /*entities.push({
+                id: boxObj.id,
+                text: box.content,
+                label: box.label,
+                box: [
+                    //Don't forget to scale the boxes coordinates to the image true size
+                    parseFloat(Number(((boxObj.aCoords.tl.x * 1000) / (State.image.scaleX * 1000))).toFixed(2)),
+                    parseFloat(Number(((boxObj.aCoords.tl.y * 1000) / (State.image.scaleY * 1000))).toFixed(2)),
+                    parseFloat(Number((((boxObj.aCoords.tl.x + boxObj.width) * 1000) / (State.image.scaleX * 1000))).toFixed(2)),
+                    parseFloat(Number((((boxObj.aCoords.tl.y + boxObj.height) * 1000) / (State.image.scaleY * 1000))).toFixed(2))
+                ],
+                linking: [...fromLinks, ...toLinks]
+            })*/
             let attribute = ''
             if (fromLinks.some(link => link.includes(boxObj.id))) {
                 attribute = 'key'
@@ -70,8 +65,8 @@ export default class FileService {
                     parseFloat(Number((((boxObj.aCoords.tl.y + boxObj.height) * 1000) / (State.image.scaleY * 1000))).toFixed(2))
                 ],
                 linking: [...fromLinks, ...toLinks],
-                attribute: box.label
             })
+
         }
 
         return JSON.stringify(entities)
@@ -122,8 +117,7 @@ export default class FileService {
                     obj.textAnnotations[i].boundingPoly.vertices[3].y
                 ],
                 label: "",
-                linking: [], 
-                relation: []
+                linking: []
             })
         }
         return boxObjects

@@ -18,7 +18,8 @@ export default class State {
     static isMouseDown = false
     static mouseOriginX = 0
     static mouseOriginY = 0
-    static currentFileNumber = 0
+    //static currentFileNumber = 0
+    static currentFileNumber = 0 //40
 
     static currentLinksModalBoxId = null
 
