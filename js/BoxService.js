@@ -9,13 +9,25 @@ const boxColors = {
     header: "rgb(170,0,0)",
     others: "rgb(24,170,135)",
     name: "rgb(170,80,13)",
+    englishName: "rgb(170,80,13)",
+    firstName: "rgb(170,80,13)",
+    lastName: "rgb(170,80,13)",
+    company: "rgb(170,80,13)",
+    key: "rgb(170,0,0)",
+    box: "rgb(170,0,0)",
     account: "rgb(170,153,21)",
     time: "rgb(103,170,0)",
     date: "rgb(29,170,5)",
-    //key: "rgb(24,170,135)",
+    year: "rgb(29,170,5)",
+    month: "rgb(29,170,5)",
+    day: "rgb(29,170,5)",
+    identity: "rgb(24,170,135)",
     phone: "rgb(36,124,170)",
-    //value: "rgb(49,0,170)",
-    price: "rgb(0,0,0)",
+    address: "rgb(49,0,170)",
+    email: "rgb(0,0,0)",
+    number4: "rgb(0,0,0)",
+    number3: "rgb(0,0,0)",
+    number2: "rgb(0,0,0)",
     mobile: "rgb(63,62,64)",
 }
 
@@ -150,12 +162,14 @@ export default class BoxService {
         document.getElementById("box-" + id).remove()
         //And we delete each links linked to the box
         //Here we use a for in instead of a foreach, because of the reindexing thing we make when we delete links
+        
         for (let i in State.boxArray[id].originLinks) {
             LinkingService.deleteLink(State.boxArray[id].originLinks[i])
         }
         for (let i in State.boxArray[id].destinationLinks) {
             LinkingService.deleteLink(State.boxArray[id].destinationLinks[i])
         }
+        
         delete State.boxArray[id]
 
         BoxService.reindexBoxes(id)
@@ -178,13 +192,29 @@ export default class BoxService {
                         <option value=""></option>
                         <option value="header">Header</option>
                         <option value="others">Others</option>
+                        <option value="key">Key</option>
+                        <option value="box">Box</option>
                         <option value="name">Name</option>
+                        <option value="company">Company</option>
                         <option value="account">Account</option>
+                        <option value="identity">Identity</option>
                         <option value="date">Date</option>
+                        <option value="number4">Number4</option>
+                        <option value="number3">Number3</option>
+                        <option value="number2">Number2</option>
+                        <option value="englishName">EnglishName</option>
+                        <option value="firstName">FirstName</option>
+                        <option value="lastName">LastName</option>
+                        <option value="year">Year</option>
+                        <option value="month">Month</option>
+                        <option value="day">Day</option>
                         <option value="time">Time</option>
+                        <option value="address">Address</option>
                         <option value="mobile">MobilePhone</option>
                         <option value="phone">Phone</option>
-                        <option value="price">Price</option>
+                        <option value="relation">Relation</option>
+                        <option value="profession">Profession</option>
+                        <option value="email">Email</option>
                         </select>
                     </div>
                     <div>

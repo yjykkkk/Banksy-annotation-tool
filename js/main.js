@@ -464,8 +464,8 @@ function mergeBoxes() {
             
             //We sort from the left to the right
             boxes.sort((a, b) => a.box.left >= b.box.left ? 1 : -1)
-            //in order to concat the text
-            let text = boxes.reduce((str, box) => str + " " + box.content, "").trim()
+            //in order to concat the text  
+            let text = boxes.reduce((str, box) => str + "" + box.content, "").trim() //不要有空格
             let createdId = BoxService.createBox({
                 left: selection.left,
                 top: selection.top,
