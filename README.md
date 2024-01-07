@@ -82,20 +82,6 @@ In order to create links between boxes, select the box that will be the starting
 
 You can zoom in and out with the mouse wheel, and move in the receipt by maintaining the `Ctrl` or `Cmd` key.
 
-When selecting a box, you can change its label with the numeric keys on top of you keyboard:
-
-- `1` : Label
-- `2` : Price
-- `3` : Bundle
-- `4` : Misc
-- `5` : Payment
-- `6` : Barcode
-- `7` : Brand
-- `8` : Location
-- `9` : Date
-- `0` : Phone
-- `)` (key at the right of the 0) : Person
-
 
 When you finish the annotation of an image, simply hit "Save output" on the top of the screen. A JSON file with all the data will be downloaded.
 
